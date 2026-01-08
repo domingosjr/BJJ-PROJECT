@@ -1,204 +1,231 @@
-🥋 BJJ School – Sistema de Cadastro de Escola de Jiu-Jitsu
+🥋 # BJJ School – Sistema Full Stack para Gestão de Escola de Jiu-Jitsu
 
-Relatório Técnico Acadêmico
-Autor: Domingos Caldas de Oliveira Junior
-Professor: Willian Almeida Rodrigues
-Disciplina: Desenvolvimento de Aplicações Interativas com React [25E4_2]
-Instituição: INFNET – Instituto de Tecnologia
-Ano: 2025
+## Projeto da Disciplina – ENTREGA FINAL
 
-Sumário
+**Aluno:** Domingos Caldas de Oliveira Junior  
+**Professor:** Leonardo Silva da Gloria  
+**Disciplina:** Projeto da Disciplina – Desenvolvimento Full Stack com React e Spring Boot [25E4_3]  
+**Instituição:** Instituto INFNET  
+**Ano:** 2026  
+---
+## Sumário
 
-Resumo Executivo
+1. [Resumo Executivo](#1-resumo-executivo)
+2. [Objetivo do Projeto](#2-objetivo-do-projeto)
+3. [Descrição Funcional do Sistema](#3-descrição-funcional-do-sistema)
+4. [Arquitetura da Aplicação](#4-arquitetura-da-aplicação)
+   - 4.1 [Frontend](#41-frontend)
+   - 4.2 [Backend](#42-backend)
+   - 4.3 [Autenticação e Segurança](#43-autenticação-e-segurança)
+   - 4.4 [Infraestrutura](#44-infraestrutura)
+5. [Tecnologias Utilizadas](#5-tecnologias-utilizadas)
+6. [Implementação dos Requisitos da Disciplina](#6-implementação-dos-requisitos-da-disciplina)
+   - 6.1 [CRUD Completo](#61-crud-completo)
+   - 6.2 [Integração Frontend e Backend](#62-integração-frontend-e-backend)
+   - 6.3 [Segurança e Controle de Acesso](#63-segurança-e-controle-de-acesso)
+   - 6.4 [Tratamento de Erros e Experiência do Usuário](#64-tratamento-de-erros-e-experiência-do-usuário)
+   - 6.5 [Execução Automatizada](#65-execução-automatizada)
+7. [Instruções de Execução](#7-instruções-de-execução)
+   - 7.1 [Clonagem do Repositório](#71-clonagem-do-repositório)
+   - 7.2 [Execução com Docker](#72-execução-com-docker)
+   - 7.3 [Acessos](#73-acessos)
+8. [Evidências de Funcionamento](#8-evidências-de-funcionamento)
+9. [Considerações Finais](#9-considerações-finais)
+10. [Referências](#10-referências)
+
+---
+
+## 1. Resumo Executivo
+
+O projeto **BJJ School** consiste em uma aplicação **Full Stack** desenvolvida para o gerenciamento de alunos de uma escola de jiu-jitsu.  
+A solução contempla funcionalidades completas de **cadastro, consulta, edição e exclusão (CRUD)**, integrando um frontend moderno em React a um backend robusto em Spring Boot, com **controle de acesso seguro baseado em autenticação e autorização**.
 
-Objetivo do Projeto
+A aplicação foi totalmente containerizada utilizando **Docker e Docker Compose**, permitindo que todo o ambiente seja executado de forma automatizada com um único comando, garantindo portabilidade, reprodutibilidade e facilidade de avaliação pelo professor.
 
-Features Implementadas
+---
 
-Tecnologias Utilizadas
+## 2. Objetivo do Projeto
 
-Arquitetura do Projeto
+O objetivo principal deste projeto é aplicar, de forma prática, os conceitos estudados ao longo da disciplina, incluindo:
 
-Instruções de Execução
+- Desenvolvimento de interfaces interativas utilizando React
+- Implementação de APIs REST com Spring Boot
+- Integração segura entre frontend e backend
+- Autenticação e autorização baseadas em padrões modernos
+- Controle de acesso por perfis de usuário
+- Organização e arquitetura de aplicações Full Stack
+- Execução automatizada por meio de containers Docker
 
-Critérios de Avaliação (Rubrica)
+---
 
-Considerações Finais
+## 3. Descrição Funcional do Sistema
 
-Créditos e Fontes
+A aplicação permite:
 
-1. Resumo Executivo
+- Visualizar a lista de alunos cadastrados
+- Cadastrar novos alunos
+- Editar informações de alunos existentes
+- Excluir alunos (funcionalidade restrita a usuários administradores)
+- Visualizar comunicados obtidos a partir de uma API externa
+- Garantir controle de acesso conforme o perfil do usuário autenticado
 
-O presente relatório apresenta o desenvolvimento do sistema BJJ School, uma aplicação CRUD completa criada com React + Vite, aplicada ao contexto de uma escola de jiu-jitsu.
-O sistema permite cadastrar, editar, listar e excluir alunos, integrar dados externos e navegar entre páginas de forma fluida e responsiva.
-O projeto sintetiza os conhecimentos adquiridos nas cinco primeiras aulas, aplicando boas práticas de componentização, gerenciamento de estado, integração com APIs e estilização com Material UI.
+### Perfis de acesso
 
-2. Objetivo do Projeto
+- **USER:** acesso apenas para visualização das informações
+- **ADMIN:** acesso completo às funcionalidades de criação, edição e exclusão
 
-O objetivo do projeto é desenvolver uma aplicação web moderna e funcional, capaz de gerenciar o cadastro de alunos de uma escola de jiu-jitsu.
-A aplicação demonstra a aplicação prática dos seguintes conceitos:
+---
 
-Hooks e reatividade (useState, useEffect, Context API)
+## 4. Arquitetura da Aplicação
 
-Boas práticas de JavaScript ES6+ (arrow functions, destructuring, spread)
+A solução foi estruturada em componentes independentes e integrados.
 
-Reutilização de componentes e modularização
+### 4.1 Frontend
 
-Integração com API pública (JSONPlaceholder)
+- Desenvolvido em **React** utilizando **Vite**
+- Interface construída com **Material UI**
+- Comunicação com o backend por meio de **Axios**
+- Gerenciamento de autenticação via **Keycloak**
+- Proteção de rotas e componentes baseada em roles
 
-Navegação entre páginas com React Router
+### 4.2 Backend
 
-Interface estilizada e responsiva com Material UI
+- Desenvolvido em **Spring Boot**
+- API REST para operações de CRUD
+- Persistência de dados com **JPA/Hibernate**
+- Banco de dados relacional **PostgreSQL**
+- Segurança implementada com **Spring Security** e **OAuth2 Resource Server**
 
-Gerenciamento global de estado com Redux Toolkit
+### 4.3 Autenticação e Segurança
 
-3. Features Implementadas
-Feature I – JavaScript moderno e Interface com React
+- **Keycloak** como provedor de identidade
+- Autenticação baseada em **JWT**
+- Controle de permissões por roles
+- Validação de acesso tanto no backend quanto no frontend
 
-Estrutura modular com componentes reutilizáveis (StudentFormFields, StudentsTable, NavLinkButton).
+### 4.4 Infraestrutura
 
-Sintaxe moderna: arrow functions, destructuring e template literals.
+- Containerização com **Docker**
+- Orquestração com **Docker Compose**
+- Serviços executados:
+  - Frontend
+  - Backend
+  - Keycloak
+  - Banco de dados PostgreSQL
 
-Interface com Material UI, garantindo responsividade e acessibilidade.
+---
 
-Separação entre lógica de negócio e interface (arquitetura em camadas).
+## 5. Tecnologias Utilizadas
 
-Feature II – Gerenciamento de dados, reatividade e manipulação de listas
+- React
+- Vite
+- Material UI
+- Axios
+- React Router
+- Spring Boot
+- Spring Security
+- OAuth2
+- JWT
+- Keycloak
+- PostgreSQL
+- Docker
+- Docker Compose
 
-Context API e Redux Toolkit para gerenciamento de estado.
+---
 
-Hook customizado (useLocalStorage) para persistência dos dados localmente.
+## 6. Implementação dos Requisitos da Disciplina
 
-Renderização condicional entre modos de cadastro e edição.
+### 6.1 CRUD Completo
 
-Formulários controlados com React Hook Form, com validações e mensagens de erro.
+O sistema implementa todas as operações de **Create, Read, Update e Delete** para a entidade **Aluno**, atendendo integralmente aos requisitos funcionais propostos.
 
-Feature III – Integração com API externa e navegação
+### 6.2 Integração Frontend e Backend
 
-Consumo da API pública JSONPlaceholder via Axios.
+O frontend consome os endpoints REST disponibilizados pelo backend, realizando operações de leitura e escrita de dados de forma segura.
 
-Uso de Promise.race e AbortController para controle de requisições assíncronas.
+### 6.3 Segurança e Controle de Acesso
 
-Tratamento de erros e estados de carregamento (Alert, CircularProgress do MUI).
+- Login centralizado utilizando Keycloak
+- Tokens JWT enviados automaticamente nas requisições autenticadas
+- Validação de permissões no backend
+- Ocultação de funcionalidades no frontend conforme o perfil do usuário
 
-Navegação entre páginas com React Router e rota privada simulada (/admin).
+### 6.4 Tratamento de Erros e Experiência do Usuário
 
-4. Tecnologias Utilizadas
-Categoria	Ferramenta / Biblioteca
-Framework principal	React
- (via Vite
-)
-UI / Estilo	Material UI
+- Mensagens visuais para erros de autenticação e autorização
+- Feedback ao usuário em operações inválidas
+- Confirmação antes da execução de ações destrutivas, como exclusões
 
-Formulários	React Hook Form
+### 6.5 Execução Automatizada
 
-Estado Local	Hooks e Context API
-Estado Global	Redux Toolkit
+Todo o ambiente pode ser iniciado com um único comando Docker, sem a necessidade de configurações manuais adicionais.
 
-Persistência Local	localStorage (hook customizado useLocalStorage)
-API Externa	Axios
- + JSONPlaceholder
+---
 
-Navegação	React Router DOM
+## 7. Instruções de Execução
 
-IDE / Ambiente	Visual Studio Code + Node.js + Vite Dev Server
-5. Arquitetura do Projeto
-src/
- ├── components/
- │    ├── StudentFormFields.jsx
- │    ├── StudentsTable.jsx
- │    └── NavLinkButton.jsx
- ├── context/
- │    └── AlunosContext.jsx
- ├── hooks/
- │    └── useLocalStorage.js
- ├── layout/
- │    └── AppShell.jsx
- ├── pages/
- │    ├── Home.jsx
- │    ├── Students.jsx
- │    ├── Comunicados.jsx
- │    └── Admin.jsx
- ├── services/
- │    └── api.js
- ├── store/
- │    ├── index.js
- │    └── uiSlice.js
- ├── theme/
- │    └── theme.js
- ├── App.jsx
- ├── main.jsx
- └── index.html
+### Pré-requisitos
 
-6. Instruções de Execução
-1️⃣ Clonar o repositório
-git clone https://github.com/domingosjr/bjj-school.git
-cd jj-school
+- Docker
+- Docker Compose
 
-2️⃣ Instalar dependências
-npm install
+### 7.1 Clonagem do Repositório
 
-3️⃣ Executar em modo desenvolvimento
-npm run dev
+Repositório oficial no GitHub:
+https://github.com/domingosjr/BJJ-PROJECT
 
+```bash
+git clone https://github.com/domingosjr/BJJ-PROJECT
+cd BJJ-PROJECT
+```
 
-Acesse http://localhost:5173.
+### 7.2 Execução com Docker
 
-4️⃣ Build de produção
-npm run build
+Na raiz do projeto, executar o comando:
 
-5️⃣ Pré-visualização do build
-npm run preview
+```bash
+docker compose up -d --build
+```
 
-7. Critérios de Avaliação (Rubrica)
-Critério	Evidência
-Configuração do ambiente	Projeto criado com Vite e estrutura modular
-Uso de JSX e ES6	Arrow functions, destructuring e spread
-Reutilização de componentes	Form, Tabela, Navegação
-Redux e Hooks	uiSlice, useAlunos, useLocalStorage
-Estilo e UI	Material UI aplicado integralmente
-Consumo de API	JSONPlaceholder via Axios
-Tratamento de erros	Alertas e loaders com MUI
-Navegação	React Router com rota privada
-Acessibilidade	Labels e responsividade do Material UI
-8. Considerações Finais
+### 7.3 Acessos
 
-O desenvolvimento do BJJ School consolidou os principais fundamentos do React aprendidos durante o módulo.
-O projeto atende aos critérios de arquitetura, código moderno, responsividade e boas práticas de integração com APIs.
-Durante o processo, foram aplicados conceitos de Hooks, Context API, Redux, React Router, React Hook Form e MUI, resultando em uma aplicação completa e didaticamente robusta.
+- Frontend: http://localhost:5173  
+- Backend: http://localhost:8090  
+- Keycloak: http://localhost:8081  
 
-O aprendizado adquirido reforça a capacidade de planejar, estruturar e desenvolver aplicações web modernas e escaláveis, integrando teoria e prática com excelência técnica.
+---
 
-9. Créditos e Fontes
+## 8. Evidências de Funcionamento
 
-Autor: Domingos Caldas de Oliveira Junior
-Professor: Willian Almeida Rodrigues
-Disciplina: Desenvolvimento de Aplicações Interativas com React [25E4_2]
-Instituição: INFNET – Instituto de Tecnologia
-Ano: 2025
+- Tela de autenticação via Keycloak
+- Tela de listagem de alunos
+- Funcionalidades de cadastro, edição e exclusão
+- Controle de acesso baseado em perfil
+- Containers em execução via Docker Compose
 
-Fontes e Referências Técnicas
+---
 
-React Official Documentation – https://react.dev
+## 9. Considerações Finais
 
-Vite – Next Generation Frontend Tooling – https://vitejs.dev
+O projeto **BJJ School** possibilitou a aplicação integrada dos conceitos abordados na disciplina, proporcionando uma visão prática do desenvolvimento de aplicações Full Stack modernas, seguras e escaláveis.
 
-Material UI (MUI) – https://mui.com
+A adoção de Docker e Keycloak agregou valor técnico ao projeto, aproximando-o de cenários reais encontrados no mercado de trabalho.
 
-React Hook Form – https://react-hook-form.com
+---
 
-Redux Toolkit – https://redux-toolkit.js.org
+## 10. Referências
 
-React Router DOM – https://reactrouter.com
+- React – https://react.dev/
+- Vite – https://vitejs.dev/
+- Material UI – https://mui.com/
+- Spring Boot – https://spring.io/projects/spring-boot
+- Spring Security – https://spring.io/projects/spring-security
+- Keycloak – https://www.keycloak.org/
+- Docker – https://www.docker.com/
+- Docker Compose – https://docs.docker.com/compose/
+- PostgreSQL – https://www.postgresql.org/
+- OpenAI ChatGPT (GPT-5.2) – Ferramenta utilizada para apoio técnico e geração de documentação, respeitando diretrizes acadêmicas de transparência e citação.
 
-Axios HTTP Client – https://axios-http.com
+---
 
-JSONPlaceholder API – https://jsonplaceholder.typicode.com
-
-MDN Web Docs (ES6+, Hooks, Fetch API) – https://developer.mozilla.org
-
-OpenAI ChatGPT (GPT-5) – Ferramenta utilizada para apoio técnico e geração de documentação, respeitando diretrizes acadêmicas de transparência e citação.
-
-Agradecimentos
-
-Agradeço ao professor Willian Almeida Rodrigues pelas orientações e feedbacks durante o desenvolvimento das atividades práticas, e ao Instituto INFNET pela qualidade metodológica e técnica do programa de pós-graduação em Engenharia de Software com Java.
+**Projeto acadêmico desenvolvido no Instituto INFNET**
