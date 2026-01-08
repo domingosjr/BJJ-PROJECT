@@ -228,4 +228,8 @@ A adoção de Docker e Keycloak agregou valor técnico ao projeto, aproximando-o
 
 ---
 
+Agradecimentos
+
+Agradeço ao professor Leonardo Silva da Gloria pelas orientações e feedbacks durante o desenvolvimento das atividades práticas, e ao Instituto INFNET pela qualidade metodológica e técnica do programa de pós-graduação em Engenharia de Software com Java.
+
 **Projeto acadêmico desenvolvido no Instituto INFNET**
